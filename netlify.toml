@@ -15,10 +15,14 @@
   [headers.values]
     Content-Security-Policy = """
       default-src 'self';
-      connect-src 'self' https://yiiarlagxlrzzomzpqid.supabase.co wss://yiiarlagxlrzzomzpqid.supabase.co https://prod.spline.design;
-      script-src 'self' 'unsafe-inline';
+      script-src 'self' 'unsafe-inline' https://unpkg.com;
+      connect-src 'self' https://*.supabase.co wss://*.supabase.co https://prod.spline.design;
       style-src 'self' 'unsafe-inline';
-      img-src 'self' data: blob: https:;
+      img-src 'self' https: data: blob:;
       font-src 'self' https:;
-      frame-src https:;
+      frame-src 'self' https:;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
     """
+
