@@ -12,10 +12,13 @@
 
 [[headers]]
   for = "/*"
-    [headers.values]
-      Content-Security-Policy = "default-src 'self' https://yiiarlagxlrzzomzpqid.supabase.co; script-src 'self' 'unsafe-inline' https://unpkg.com https://prod.spline.design; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://*.unsplash.com https://yiiarlagxlrzzomzpqid.supabase.co; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://yiiarlagxlrzzomzpqid.supabase.co wss://yiiarlagxlrzzomzpqid.supabase.co;"
-      X-Frame-Options = "DENY"
-      X-XSS-Protection = "1; mode=block"
-      X-Content-Type-Options = "nosniff"
-      Referrer-Policy = "strict-origin-when-cross-origin"
-      Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+  [headers.values]
+    Content-Security-Policy = """
+      default-src 'self';
+      connect-src 'self' https://yiiarlagxlrzzomzpqid.supabase.co wss://yiiarlagxlrzzomzpqid.supabase.co https://prod.spline.design;
+      script-src 'self' 'unsafe-inline';
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: blob: https:;
+      font-src 'self' https:;
+      frame-src https:;
+    """
