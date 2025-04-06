@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: theme('colors.gray.950');
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.5;
+    color: theme('colors.gray.100');
+    font-family: theme('fontFamily.sans');
+    position: relative;
+  }
+
+  /* Respect user's animation preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Navigation Animations */
+.nav-link {
+  @apply relative text-medium-contrast hover:text-white transition-colors duration-300;
+}
+
+.nav-link::after {
+  @apply content-[''] absolute bottom-0 left-0 w-full h-0.5 bg-primary-500 scale-x-0 origin-left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Mobile Menu Animation */
+.mobile-menu {
+  @apply transition-all duration-300 ease-in-out;
+  transform-origin: top;
+}
+
+.mobile-menu-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.mobile-menu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Button Animations */
+.btn-primary, .btn-secondary {
+  @apply transition-all duration-300 ease-out;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  transform: scale(1.05) translateZ(0);
+}
+
+.btn-primary:active, .btn-secondary:active {
+  transform: scale(0.95) translateZ(0);
+}
+
+/* Service Card Animations */
+.service-card {
+  @apply transition-all duration-300 ease-out;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.service-card:hover {
+  @apply bg-gray-850/70;
+  transform: scale(1.05) translateZ(0);
+}
+
+.service-card-icon {
+  @apply transition-all duration-300 ease-out;
+}
+
+.service-card:hover .service-card-icon {
+  transform: scale(1.1) translateZ(0);
+}
+
+/* Portfolio Card Animations */
+.portfolio-card {
+  @apply transition-all duration-500 ease-out;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.portfolio-card-image {
+  @apply transition-all duration-700 ease-out;
+}
+
+.portfolio-card:hover .portfolio-card-image {
+  transform: scale(1.1) translateZ(0);
+}
+
+.portfolio-card-content {
+  @apply transition-all duration-500 ease-out;
+  transform: translateY(20px) translateZ(0);
+  opacity: 0;
+}
+
+.portfolio-card:hover .portfolio-card-content {
+  transform: translateY(0) translateZ(0);
+  opacity: 1;
+}
+
+/* Image loading animations */
+.image-loading {
+  @apply transition-opacity duration-300 ease-out;
+  opacity: 0;
+}
+
+.image-loaded {
+  opacity: 1;
+}
+
+/* Form element animations */
+.input-field {
+  @apply transition-all duration-300 ease-out;
+  transform: translateZ(0);
+}
+
+.input-field:focus {
+  @apply ring-2 ring-primary-500 ring-offset-2 ring-offset-gray-950;
+  transform: translateY(-2px) translateZ(0);
+}
+
+/* Error message animations */
+.error-message {
+  animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+/* Loading spinner animation */
+.spinner {
+  animation: spin 1s linear infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
